@@ -1,13 +1,17 @@
 """
-Preprocessing the ICDAR dataset for later use in image detection
+Preprocessing the ICDAR dataset for image detection
 """
+
+# Images are resized (NOT cropped) into 512x512 numpy arrays
+# Associated labels are resized accordingly and placed in a 16x16 grid
+# Image data is saved as a large X.npy file and labels are saved as a large Y.npy file
 
 import numpy as np
 import cv2
 import os
 import tqdm
 
-print('Preprocessing ICDAR dataset for training and further use...')
+print('Preprocessing the ICDAR dataset...')
 
 # Define image and label location
 data_path = 'Data/'
@@ -19,7 +23,6 @@ train_image_paths = []
 train_gt_paths = []
 
 # Iterate over all files within ground_truth directory
-# (this tqdm thing creates the progress bars)
 for new_file in tqdm.tqdm(os.listdir(gt_path)):
 
     # Given a ground_truth file, build the respective image file name
@@ -32,8 +35,8 @@ for new_file in tqdm.tqdm(os.listdir(gt_path)):
         train_image_paths.append(path_img)                     # Store the path in a growing set of training images
         train_gt_paths.append(os.path.join(gt_path, new_file)) # Store the txt-file's path as well
 
-X_final = []     # These will hold the images
-Y_final = []     # These will hold their respective ground_truth labels (what we expect the network to ideally output)
+X_container = []     # These will hold the images
+Y_container = []     # These will hold their respective ground_truth labels (what we expect the network to ideally output)
 
 grid_h = 16      # This many grid cells are projected horizontally onto the image
 grid_w = grid_h  # This many grid cells are projected vertically onto the image
@@ -49,8 +52,7 @@ for j in tqdm.tqdm(range(len(train_image_paths))):
     y_sl = img_h / x.shape[0]             # Expected height in relation to original image height
     img = cv2.resize(x, (img_w, img_h))   # Resizing (NOT cropping) the image to one common size
 
-    X_final.append(img)                   # Append the resized image
-
+    X_container.append(img)                   # Append the resized image
     i = " "                               # Image file name separator
 
     # Some image files were formatted differently, we account for that
@@ -98,13 +100,13 @@ for j in tqdm.tqdm(range(len(train_image_paths))):
         Y[int(y), int(x), 0, 4] = h
 
     # Add this completed image patch coordinate matrix Y to the set of final labels Y_final
-    Y_final.append(Y)
+    Y_container.append(Y)
 
 # Copy over X_final and Y_final into X and Y
-X = np.array(X_final)
-X_final = []
-Y = np.array(Y_final)
-Y_final = []
+X = np.array(X_container)
+X_container = []
+Y = np.array(Y_container)
+Y_container = []
 
 # Convert color space [0;255] into numeric space [-1;1] for easier computing
 X = (X - 127.5) / 127.5
