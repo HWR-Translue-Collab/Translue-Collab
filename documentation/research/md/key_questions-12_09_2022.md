@@ -20,7 +20,7 @@ All the competitors listed here ⬇️ are Android based, if you use iPhone, ple
 
 ## Presentations
 
-[Evaluation - Google Lens](/artifacts/Translue%20-%20Google%20Lens%20-%2019.09.2022.pdf)
+[Evaluation - Google Lens](./artifacts/Translue%20-%20Google%20Lens%20-%2019.09.2022.pdf)
 
 Top 5 ranking screen translation app links:
 
