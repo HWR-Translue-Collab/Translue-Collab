@@ -26,3 +26,12 @@ Extract the downloaded file and place the folders inside the `data` folder.
 ### Run the model
 To run the text detection system, open the command line and tpye `jupyter notebook`. Navigate to *translue-poc/text-detection* and open *Text Detection - Translue PoC.ipynb*.<br>
 If you're having trouble, refer to [this tutorial](https://realpython.com/jupyter-notebook-introduction/) on using Jupyter notebooks.
+
+## Documentation
+
+An overview on the documented aspects of this collaboration can be found [here](documentation/Documentation.md).
+
+Overall, the provided documentation consists of:
+- [Artifacts](/documentation/artifacts/)
+- [Meeting Notes](/documentation/meeting_notes/)
+- [Research](/documentation/research/)
