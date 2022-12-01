@@ -28,6 +28,10 @@ To run the text detection system, open the command line and tpye `jupyter notebo
 If you're having trouble, refer to [this tutorial](https://realpython.com/jupyter-notebook-introduction/) on using Jupyter notebooks.
 
 ## Documentation
+
+An overview on the documented aspects of this collaboration can be found [here](documentation/Documentation.md).
+
+Overall, the provided documentation consists of:
 - [Artifacts](/documentation/artifacts/)
 - [Meeting Notes](/documentation/meeting_notes/)
 - [Research](/documentation/research/)
